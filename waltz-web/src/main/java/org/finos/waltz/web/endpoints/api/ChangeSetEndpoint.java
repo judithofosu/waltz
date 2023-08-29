@@ -55,6 +55,7 @@ public class ChangeSetEndpoint implements Endpoint {
         String findByParentRefPath = WebUtilities.mkPath(BASE_URL, "parent", ":kind", ":id");
         String findByPersonPath = WebUtilities.mkPath(BASE_URL, "person", ":employeeId");
         String findBySelectorPath = WebUtilities.mkPath(BASE_URL, "selector");
+        String findAllPath = WebUtilities.mkPath(BASE_URL, "all");
 
 
         DatumRoute<ChangeSet> getByIdRoute = (req, res) -> {
@@ -76,11 +77,14 @@ public class ChangeSetEndpoint implements Endpoint {
             return changeSetService.findByPerson(employeeId);
         };
 
+        ListRoute<ChangeSet> findAllRoute = (request, response) ->
+                changeSetService.findAll();
 
         EndpointUtilities.getForDatum(getByIdPath, getByIdRoute);
         EndpointUtilities.getForList(findByPersonPath, findByPersonRoute);
         EndpointUtilities.getForList(findByParentRefPath, findByEntityRefRoute);
         EndpointUtilities.postForList(findBySelectorPath, findBySelectorRoute);
+        EndpointUtilities.getForList(findAllPath, findAllRoute);
     }
 
 

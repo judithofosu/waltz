@@ -164,7 +164,9 @@ function determineLoadByFindAllCall(kind){
             return CORE_API.MeasurableStore.findAll;
         case "CHANGE_INITIATIVE":
             return CORE_API.ChangeInitiativeStore.findAll;
+        case "LEGAL_ENTITY":
+            return CORE_API.LegalEntityStore.findAll;
         default:
-            throw "Unsupported kind for loadById: " + kind;
+            throw "Unsupported kind for loadByFindAll: " + kind;
     }
 }

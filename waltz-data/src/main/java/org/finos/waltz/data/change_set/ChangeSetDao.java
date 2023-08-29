@@ -36,6 +36,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -60,7 +61,6 @@ public class ChangeSetDao {
 
     public static final RecordMapper<Record, ChangeSet> TO_DOMAIN_MAPPER = r -> {
         ChangeSetRecord record = r.into(ChangeSetRecord.class);
-
         Optional<LocalDateTime> plannedDate = Optional
                 .ofNullable(record.getPlannedDate())
                 .map(Timestamp::toLocalDateTime);
@@ -158,4 +158,11 @@ public class ChangeSetDao {
         }
     }
 
+    public Collection<ChangeSet> findAll(){
+        return dsl
+                .select(CHANGE_SET.fields())
+                .select(ENTITY_NAME_FIELD)
+                .from(CHANGE_SET)
+                .fetch(TO_DOMAIN_MAPPER);
+    }
 }
