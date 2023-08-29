@@ -54,6 +54,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.Collection;
 
 import static java.util.Collections.emptyList;
 import static org.finos.waltz.common.Checks.checkFalse;
@@ -545,5 +546,12 @@ public class PhysicalFlowDao {
                 .set(field, value)
                 .where(PHYSICAL_FLOW.ID.eq(flowId))
                 .execute();
+    }
+
+    public Collection<PhysicalFlow> findAll(){
+        return dsl
+                .select(PHYSICAL_FLOW.fields())
+                .from(PHYSICAL_FLOW)
+                .fetch(TO_DOMAIN_MAPPER);
     }
 }

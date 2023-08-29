@@ -22,7 +22,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import org.finos.waltz.common.exception.InsufficientPrivelegeException;
 import org.finos.waltz.model.EntityKind;
 import org.finos.waltz.model.EntityReference;
-import org.finos.waltz.model.Operation;
 import org.finos.waltz.model.SetAttributeCommand;
 import org.finos.waltz.model.physical_flow.*;
 import org.finos.waltz.model.user.SystemRole;
@@ -46,7 +45,6 @@ import spark.Response;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -171,7 +169,7 @@ public class PhysicalFlowEndpoint implements Endpoint {
                 "upload");
 
         String cleanupOrphansPath = WebUtilities.mkPath(BASE_URL, "cleanup-orphans");
-
+        String findAllPath = WebUtilities.mkPath(BASE_URL, "all");
 
         ListRoute<PhysicalFlow> findByEntityRefRoute =
                 (request, response) -> physicalFlowService.findByEntityReference(WebUtilities.getEntityReference(request));
@@ -209,6 +207,9 @@ public class PhysicalFlowEndpoint implements Endpoint {
                                 getLong(request, "toId"),
                                 WebUtilities.getUsername(request));
 
+        ListRoute<PhysicalFlow> findAllRoute =
+                (request, response) -> physicalFlowService.findAll();
+
         EndpointUtilities.getForDatum(getByIdPath, getByIdRoute);
         EndpointUtilities.getForList(findByEntityRefPath, findByEntityRefRoute);
         EndpointUtilities.getForList(findByProducerEntityRefPath, findByProducerEntityRefRoute);
@@ -217,6 +218,7 @@ public class PhysicalFlowEndpoint implements Endpoint {
         EndpointUtilities.postForList(findBySelectorPath, findBySelectorRoute);
         EndpointUtilities.getForList(findByExternalIdPath, findByExternalIdRoute);
         EndpointUtilities.getForList(findUnderlyingPhysicalFlowsPath, findUnderlyingPhysicalFlowsRoute);
+        EndpointUtilities.getForList(findAllPath, findAllRoute);
 
         EndpointUtilities.postForDatum(mergePath, mergeRoute);
         EndpointUtilities.postForDatum(createPath, this::createFlow);

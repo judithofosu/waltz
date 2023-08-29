@@ -346,6 +346,9 @@ public class PhysicalFlowService {
         return rc;
     }
 
+    public Collection<PhysicalFlow> findAll(){
+        return physicalFlowDao.findAll();
+    }
 
     // -- HELPERS
 

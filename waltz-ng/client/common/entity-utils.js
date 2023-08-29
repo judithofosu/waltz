@@ -168,5 +168,7 @@ function determineLoadByFindAllCall(kind){
             return CORE_API.ChangeSetStore.findAll;
         case "LEGAL_ENTITY":
             return CORE_API.LegalEntityStore.findAll;
+        case "PHYSICAL_FLOW":
+            return CORE_API.PhysicalFlowStore.findAll;
     }
 }
