@@ -164,6 +164,8 @@ function determineLoadByFindAllCall(kind){
             return CORE_API.MeasurableStore.findAll;
         case "CHANGE_INITIATIVE":
             return CORE_API.ChangeInitiativeStore.findAll;
+        case "CHANGE_SET":
+            return CORE_API.ChangeSetStore.findAll;
         case "LEGAL_ENTITY":
             return CORE_API.LegalEntityStore.findAll;
         default:

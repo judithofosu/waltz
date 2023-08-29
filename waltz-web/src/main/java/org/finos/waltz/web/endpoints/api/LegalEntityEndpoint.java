@@ -14,6 +14,7 @@ import static org.finos.waltz.common.Checks.checkNotNull;
 import static org.finos.waltz.web.WebUtilities.*;
 import static org.finos.waltz.web.endpoints.EndpointUtilities.getForDatum;
 import static org.finos.waltz.web.endpoints.EndpointUtilities.postForList;
+import static org.finos.waltz.web.endpoints.EndpointUtilities.getForList;
 
 @Service
 public class LegalEntityEndpoint implements Endpoint {
@@ -32,6 +33,7 @@ public class LegalEntityEndpoint implements Endpoint {
 
         getForDatum(mkPath(BASE_URL, "id", ":id"), this::getByIdRoute);
         postForList(mkPath(BASE_URL, "selector"), this::findBySelectorRoute);
+        getForList(mkPath(BASE_URL, "all"), (request, response) -> legalEntityService.findAll());
     }
 
     private LegalEntity getByIdRoute(Request request, Response response) {
