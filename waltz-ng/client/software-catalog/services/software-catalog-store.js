@@ -56,6 +56,9 @@ export function store($http, BaseApiUrl) {
         .get(`${BASE}/licence-id/${id}`)
         .then(r => r.data);
 
+    const findAll = () => $http
+        .get(`${BASE}/all`)
+        .then(r => r.data)
 
     return {
         findByAppIds,
@@ -63,7 +66,8 @@ export function store($http, BaseApiUrl) {
         findStatsForSelector,
         getByPackageId,
         getByLicenceId,
-        getByVersionId
+        getByVersionId,
+        findAll
     };
 }
 
@@ -102,5 +106,10 @@ export const SoftwareCatalogStore_API = {
         serviceFnName: 'getByVersionId',
         description: 'executes getByVersionId'
     },
+    findAll: {
+        serviceName,
+        serviceFnName: 'findAll',
+        description: 'find all software packages'
+    }
 };
 
