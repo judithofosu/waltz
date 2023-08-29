@@ -154,4 +154,8 @@ public class SoftwareCatalogService {
     public List<SoftwarePackage> search(EntitySearchOptions options) {
         return softwarePackageDao.search(options);
     }
+
+    public List<SoftwarePackage> findAll(){
+        return softwarePackageDao.findAll();
+    }
 }

@@ -172,6 +172,8 @@ function determineLoadByFindAllCall(kind){
             return CORE_API.PhysicalFlowStore.findAll;
         case "PHYSICAL_SPECIFICATION":
             return CORE_API.PhysicalSpecificationStore.findAll;
+        case "SOFTWARE_PACKAGE":
+            return CORE_API.SoftwareCatalogStore;
         default:
             throw "Unsupported kind for loadByFindAll: " + kind;
     }

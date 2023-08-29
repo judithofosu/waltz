@@ -18,8 +18,10 @@
 
 package org.finos.waltz.web.endpoints.api;
 
+import org.finos.waltz.model.software_catalog.SoftwarePackage;
 import org.finos.waltz.service.software_catalog.SoftwareCatalogService;
 import org.finos.waltz.web.DatumRoute;
+import org.finos.waltz.web.ListRoute;
 import org.finos.waltz.web.endpoints.Endpoint;
 import org.finos.waltz.model.IdSelectionOptions;
 import org.finos.waltz.model.software_catalog.SoftwareCatalog;
@@ -34,6 +36,7 @@ import java.io.IOException;
 import static org.finos.waltz.web.WebUtilities.*;
 import static org.finos.waltz.web.endpoints.EndpointUtilities.getForDatum;
 import static org.finos.waltz.web.endpoints.EndpointUtilities.postForDatum;
+import static org.finos.waltz.web.endpoints.EndpointUtilities.getForList;
 
 @Service
 public class SoftwareCatalogEndpoint implements Endpoint {
@@ -53,7 +56,7 @@ public class SoftwareCatalogEndpoint implements Endpoint {
 
         String makeCatalogForAppIdsPath = mkPath(BASE_URL, "apps");
         String calculateStatsForAppIdSelectorPath = mkPath(BASE_URL, "stats");
-
+        String findAllPath = mkPath(BASE_URL, "all");
 
         DatumRoute<SoftwareCatalog> makeCatalogForAppIdsRoute = (request, response) ->
                 service.makeCatalogForAppIds(readIdsFromBody(request));
@@ -61,6 +64,8 @@ public class SoftwareCatalogEndpoint implements Endpoint {
         DatumRoute<SoftwareSummaryStatistics> calculateStatsForAppIdSelectorRoute = (request, response)
                 -> service.calculateStatisticsForAppIdSelector(readIdSelectionOptionsFromBody(request));
 
+        ListRoute<SoftwarePackage> findAllRoute = (request, response) ->
+                service.findAll();
 
         getForDatum(mkPath(BASE_URL, "package-id", ":id"), this::getByPackageIdRoute);
         getForDatum(mkPath(BASE_URL, "version-id", ":id"), this::getByVersionIdRoute);
@@ -68,6 +73,7 @@ public class SoftwareCatalogEndpoint implements Endpoint {
         postForDatum(mkPath(BASE_URL, "selector"), this::getBySelectorRoute);
         postForDatum(makeCatalogForAppIdsPath, makeCatalogForAppIdsRoute);
         postForDatum(calculateStatsForAppIdSelectorPath, calculateStatsForAppIdSelectorRoute);
+        getForList(findAllPath, findAllRoute);
 
     }
 
