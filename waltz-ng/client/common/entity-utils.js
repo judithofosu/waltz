@@ -155,3 +155,14 @@ export function loadByExtId(serviceBroker, kind, extId) {
 export function isRemoved(entity) {
     return entity.isRemoved || entity.entityLifecycleStatus === "REMOVED";
 }
+
+function determineLoadByFindAllCall(kind){
+    switch (kind){
+        case "APPLICATION":
+            return CORE_API.ApplicationStore.findAll;
+        case "MEASURABLE":
+            return CORE_API.MeasurableStore.findAll;
+        case "CHANGE_INITIATIVE":
+            return CORE_API.ChangeInitiativeStore.findAll;
+    }
+}
