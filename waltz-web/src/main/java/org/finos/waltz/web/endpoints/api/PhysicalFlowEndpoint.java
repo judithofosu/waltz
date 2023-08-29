@@ -171,7 +171,7 @@ public class PhysicalFlowEndpoint implements Endpoint {
                 "upload");
 
         String cleanupOrphansPath = WebUtilities.mkPath(BASE_URL, "cleanup-orphans");
-
+        String findAllPath = WebUtilities.mkPath(BASE_URL, "all");
 
         ListRoute<PhysicalFlow> findByEntityRefRoute =
                 (request, response) -> physicalFlowService.findByEntityReference(WebUtilities.getEntityReference(request));
@@ -209,6 +209,9 @@ public class PhysicalFlowEndpoint implements Endpoint {
                                 getLong(request, "toId"),
                                 WebUtilities.getUsername(request));
 
+        ListRoute<PhysicalFlow> findAllRoute =
+                (request, response) -> physicalFlowService.findAll();
+
         EndpointUtilities.getForDatum(getByIdPath, getByIdRoute);
         EndpointUtilities.getForList(findByEntityRefPath, findByEntityRefRoute);
         EndpointUtilities.getForList(findByProducerEntityRefPath, findByProducerEntityRefRoute);
@@ -217,6 +220,7 @@ public class PhysicalFlowEndpoint implements Endpoint {
         EndpointUtilities.postForList(findBySelectorPath, findBySelectorRoute);
         EndpointUtilities.getForList(findByExternalIdPath, findByExternalIdRoute);
         EndpointUtilities.getForList(findUnderlyingPhysicalFlowsPath, findUnderlyingPhysicalFlowsRoute);
+        EndpointUtilities.getForList(findAllPath, findAllRoute);
 
         EndpointUtilities.postForDatum(mergePath, mergeRoute);
         EndpointUtilities.postForDatum(createPath, this::createFlow);
