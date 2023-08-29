@@ -43,11 +43,16 @@ export function store($http, BaseApiUrl) {
         .post(`${BASE}/selector`, options)
         .then(result => result.data);
 
+    const findAll = () => $http
+        .get(`${BASE}/all`)
+        .then(result => result.data);
+
     return {
         getById,
         findByParentRef,
         findByPerson,
-        findBySelector
+        findBySelector,
+        findAll
     };
 }
 
@@ -82,5 +87,10 @@ export const ChangeSetStore_API = {
         serviceFnName: "findBySelector",
         description: "find change sets by selector"
     },
+    findAll: {
+        serviceName,
+        serviceFnName: "findAll",
+        description: "find all change set stores"
+    }
 };
 

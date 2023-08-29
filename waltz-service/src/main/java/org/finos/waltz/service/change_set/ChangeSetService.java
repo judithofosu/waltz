@@ -28,6 +28,7 @@ import org.jooq.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 import static org.finos.waltz.common.Checks.checkNotEmpty;
@@ -69,5 +70,9 @@ public class ChangeSetService {
     public List<ChangeSet> findByPerson(String employeeId) {
         checkNotEmpty(employeeId, "employeeId cannot be null or empty");
         return changeSetDao.findByPerson(employeeId);
+    }
+
+    public Collection<ChangeSet> findAll(){
+        return changeSetDao.findAll();
     }
 }
