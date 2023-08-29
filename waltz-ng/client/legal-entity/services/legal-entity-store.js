@@ -36,10 +36,14 @@ export function store($http, BaseApiUrl) {
             .then(result => result.data);
     }
 
+    const findAll = () => $http
+        .get(`${BASE}/all`)
+        .then(result => result.data);
 
     return {
         getById,
-        findBySelector
+        findBySelector,
+        findAll
     };
 }
 
@@ -64,6 +68,11 @@ export const LegalEntityStore_API = {
         serviceFnName: "findBySelector",
         description: "executes findBySelector"
     },
+    findAll: {
+        serviceName,
+        serviceFnName: "findAll",
+        description: "find all legal entities"
+    }
 };
 
 export default {

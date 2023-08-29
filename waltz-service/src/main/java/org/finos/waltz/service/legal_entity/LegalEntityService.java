@@ -6,12 +6,14 @@ import org.finos.waltz.data.legal_entity.search.LegalEntitySearchDao;
 import org.finos.waltz.model.IdSelectionOptions;
 import org.finos.waltz.model.entity_search.EntitySearchOptions;
 import org.finos.waltz.model.legal_entity.LegalEntity;
+import org.finos.waltz.model.licence.Licence;
 import org.jooq.Record1;
 import org.jooq.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import static org.finos.waltz.common.Checks.checkNotNull;
@@ -47,5 +49,9 @@ public class LegalEntityService {
     public Set<LegalEntity> findBySelector(IdSelectionOptions selectionOptions) {
         Select<Record1<Long>> selector = legalEntityIdSelectorFactory.apply(selectionOptions);
         return legalEntityDao.findBySelector(selector);
+    }
+
+    public Set<LegalEntity> findAll() {
+        return legalEntityDao.findAll();
     }
 }
