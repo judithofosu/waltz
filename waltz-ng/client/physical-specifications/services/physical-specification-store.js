@@ -68,6 +68,9 @@ export function store($http, baseApiUrl) {
         .post(`${base}/id/${flowId}/attribute`, command)
         .then(r => r.data);
 
+    const findAll = () => $http
+        .get(`${base}/all`)
+        .then(r => r.data)
 
     return {
         findByEntityReference,
@@ -77,7 +80,8 @@ export function store($http, baseApiUrl) {
         deleteById,
         search,
         updateAttribute,
-        findPermissionsForSpec
+        findPermissionsForSpec,
+        findAll
     };
 }
 
@@ -131,5 +135,10 @@ export const PhysicalSpecificationStore_API = {
         serviceName,
         serviceFnName: "findPermissionsForSpec",
         description: "returns permissions for spec"
+    },
+    findAll:{
+        serviceName,
+        serviceFnName: "findAll",
+        description: "find all physical specifications"
     }
 };

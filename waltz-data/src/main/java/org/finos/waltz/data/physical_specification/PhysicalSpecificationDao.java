@@ -430,4 +430,12 @@ public class PhysicalSpecificationDao {
             return operationsForEntity;
         }
     }
+
+    public Collection<PhysicalSpecification> findAll(){
+        return dsl
+                .select(PHYSICAL_SPECIFICATION.fields())
+                .select(owningEntityNameField)
+                .from(PHYSICAL_SPECIFICATION)
+                .fetchSet(TO_DOMAIN_MAPPER);
+    }
 }

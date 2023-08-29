@@ -219,6 +219,9 @@ public class PhysicalSpecificationService {
         return rc;
     }
 
+    public Collection<PhysicalSpecification> findAll(){
+        return specificationDao.findAll();
+    }
 
     // -- HELPERS
 

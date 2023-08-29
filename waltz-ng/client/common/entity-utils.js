@@ -170,6 +170,8 @@ function determineLoadByFindAllCall(kind){
             return CORE_API.LegalEntityStore.findAll;
         case "PHYSICAL_FLOW":
             return CORE_API.PhysicalFlowStore.findAll;
+        case "PHYSICAL_SPECIFICATION":
+            return CORE_API.PhysicalSpecificationStore.findAll;
         default:
             throw "Unsupported kind for loadByFindAll: " + kind;
     }
