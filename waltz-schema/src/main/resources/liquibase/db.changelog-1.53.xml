@@ -434,6 +434,16 @@
         <setColumnRemarks tableName="allocated_cost_definition" columnName="source_cost_kind_id" remarks="reference to the cost kind being used as the source costs, usually a cost related to applications" />
         <setColumnRemarks tableName="allocated_cost_definition" columnName="target_cost_kind_id" remarks="reference to the cost kind being to represent the shredded target costs, usually a cost related to measurable_ratings" />
     </changeSet>
+    
+    <changeSet id="20230830-6708-1" author="judithofosu">
+        <addColumn tableName="assessment_definition">
+            <column name="mandatory_comment"
+                    type="boolean"
+                    defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
 
 
 </databaseChangeLog>
