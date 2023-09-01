@@ -436,4 +436,16 @@
     </changeSet>
 
 
+    <changeSet id="20230901-6708-1" author="judithofosu">
+        <comment>indicates if the comments for the assessment is mandatory or not</comment>
+        <addColumn tableName="assessment_definition">
+            <column name="is_comment_mandatory"
+                    type="boolean"
+                    defaultValueBoolean="false">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+
 </databaseChangeLog>
