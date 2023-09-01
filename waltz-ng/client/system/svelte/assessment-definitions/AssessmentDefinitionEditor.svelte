@@ -257,6 +257,24 @@
                     Determines if <i>anyone</i> can edit this assessment
                 </div>
 
+<!--                COMMENT-->
+                <label for="isCommentMandatory">
+                    Is Comment Mandatory?
+                </label>
+                <input type=checkbox
+                       id="isCommentMandatory"
+                       bind:checked={$selectedDefinition.isCommentMandatory}>
+                <span class="text-muted">
+                    {#if $selectedDefinition.isCommentMandatory}
+                        Yes, comment is mandatory
+                    {:else}
+                        No, comment is not mandatory
+                    {/if}
+                </span>
+                <div class="help-block">
+                    Determines if comment is mandatory in this assessment
+                </div>
+
                 <!-- PERMITTED ROLE -->
                 <label for="permittedRole">
                     Permitted Role

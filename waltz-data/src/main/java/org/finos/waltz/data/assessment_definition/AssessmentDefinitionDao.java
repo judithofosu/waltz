@@ -73,6 +73,7 @@ public class AssessmentDefinitionDao {
                         ASSESSMENT_DEFINITION.QUALIFIER_KIND,
                         ASSESSMENT_DEFINITION.QUALIFIER_ID))
                 .cardinality(Cardinality.valueOf(record.getCardinality()))
+                .isCommentMandatory(record.getIsCommentMandatory())
                 .build();
     };
 
@@ -139,6 +140,7 @@ public class AssessmentDefinitionDao {
 
         r.setIsReadonly(def.isReadOnly());
         r.setPermittedRole(permittedRole);
+        r.setIsCommentMandatory(def.isCommentMandatory());
 
         r.setLastUpdatedAt(Timestamp.valueOf(def.lastUpdatedAt()));
         r.setLastUpdatedBy(def.lastUpdatedBy());

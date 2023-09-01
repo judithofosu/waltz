@@ -44,6 +44,7 @@ public abstract class AssessmentDefinition implements
     public abstract Optional<String> permittedRole();
 
     public abstract boolean isReadOnly();
+    public abstract boolean isCommentMandatory();
 
     public abstract AssessmentVisibility visibility();
 
